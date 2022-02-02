@@ -1,0 +1,7 @@
+const CODE_STATUSES = {
+	OK: 200,
+	SERVER_ERROR: 500,
+	UNAUTHORISED: 403,
+};
+
+export { CODE_STATUSES };
