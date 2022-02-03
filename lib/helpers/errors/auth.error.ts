@@ -8,7 +8,6 @@ class AuthError extends ExternalError {
 		status = CODE_STATUSES.UNAUTHORISED,
 	}) {
 		super({ message, status });
-		console.log("message", message);
 	}
 }
 

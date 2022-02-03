@@ -1,15 +1,13 @@
-import { Response, Request, NextFunction } from "express";
+import { Response, Request, NextFunction, ErrorRequestHandler } from "express";
 import { ExternalError, InternalError } from "../helpers/errors";
 
-const errorMiddleware = async (
-	err: Error,
+const errorMiddleware: ErrorRequestHandler = async (
+	err: any,
 	req: Request,
 	res: Response,
 	next: NextFunction
 ) => {
-	try {
-		await next();
-	} catch (err: any) {
+	if (err) {
 		let internalError;
 		let publicError;
 		const status = err.status;
@@ -26,7 +24,7 @@ const errorMiddleware = async (
 			});
 		}
 
-		res.status(publicError.status).send(publicError.message);
+		res.status(publicError.status).json({ message: publicError.message });
 
 		if (internalError) {
 			console.log("internalError", internalError);

@@ -1,9 +1,11 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import cors from "cors";
 import { Server } from "node:http";
 import { serverConfig } from "../constants/config";
 import { errorMiddleware } from "../middleware";
 import db from "./data-access/models";
+import mainRoute from "./routes";
+import cookieParser from "cookie-parser";
 
 export class App {
 	client: Express;
@@ -13,17 +15,18 @@ export class App {
 	}
 
 	connectCors() {
-		this.client.use(cors());
+		// this.client.use(cors());
 	}
 
 	connectDb() {
-		db.sequelize.sync().then(() => {
+		db.sequelize.sync({ force: true }).then(() => {
 			console.log(`Database connected`);
 		});
 	}
 
 	connectMiddlewares() {
 		this.client.use(express.json());
+		this.client.use(cookieParser());
 	}
 
 	connectErrorHandlers() {
@@ -31,7 +34,7 @@ export class App {
 	}
 
 	connectRoutes() {
-		// this.app.use("/");
+		this.client.use("/api", mainRoute);
 	}
 
 	public listen() {

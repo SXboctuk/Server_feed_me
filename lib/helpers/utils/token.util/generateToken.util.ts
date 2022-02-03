@@ -3,7 +3,7 @@ import { AUTH } from "../../../constants/auth";
 
 const generateToken = (payload: string | Buffer | object) => {
 	let accessToken = jwt.sign(payload, AUTH.JWT_SECRET, {
-		encoding: AUTH.TOKEN_ALGORITHM,
+		algorithm: AUTH.TOKEN_ALGORITHM,
 		expiresIn: AUTH.JWT_TOKEN_LIFE,
 	});
 

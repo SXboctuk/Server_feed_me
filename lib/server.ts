@@ -11,9 +11,9 @@ export class Server {
 	start() {
 		this.app.connectCors();
 		this.app.connectDb();
-		this.app.connectErrorHandlers();
 		this.app.connectMiddlewares();
 		this.app.connectRoutes();
+		this.app.connectErrorHandlers();
 		this.app.listen();
 	}
 }
