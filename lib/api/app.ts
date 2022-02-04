@@ -2,10 +2,11 @@ import express, { Express, Request, Response } from "express";
 import cors from "cors";
 import { Server } from "node:http";
 import { serverConfig } from "../constants/config";
-import { errorMiddleware } from "../middleware";
+import { middlewares } from "../middleware";
 import db from "./data-access/models";
 import mainRoute from "./routes";
 import cookieParser from "cookie-parser";
+import fileUpload from "express-fileupload";
 
 export class App {
 	client: Express;
@@ -15,7 +16,7 @@ export class App {
 	}
 
 	connectCors() {
-		// this.client.use(cors());
+		this.client.use(cors());
 	}
 
 	connectDb() {
@@ -27,10 +28,11 @@ export class App {
 	connectMiddlewares() {
 		this.client.use(express.json());
 		this.client.use(cookieParser());
+		this.client.use(fileUpload());
 	}
 
 	connectErrorHandlers() {
-		this.client.use(errorMiddleware);
+		this.client.use(middlewares.errorMiddleware);
 	}
 
 	connectRoutes() {
