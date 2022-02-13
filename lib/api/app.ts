@@ -1,6 +1,5 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express, NextFunction, Request, Response } from "express";
 import cors from "cors";
-import { Server } from "node:http";
 import { serverConfig } from "../constants/config";
 import { middlewares } from "../middleware";
 import db from "./data-access/models";
@@ -18,15 +17,16 @@ export class App {
 	connectCors() {
 		this.client.use(cors());
 	}
-
+	//{ force: true }
 	connectDb() {
-		db.sequelize.sync({ force: true }).then(() => {
+		db.sequelize.sync().then(() => {
 			console.log(`Database connected`);
 		});
 	}
 
 	connectMiddlewares() {
 		this.client.use(express.json());
+		this.client.use(express.urlencoded());
 		this.client.use(cookieParser());
 		this.client.use(fileUpload());
 	}
@@ -38,7 +38,6 @@ export class App {
 	connectRoutes() {
 		this.client.use("/api", mainRoute);
 	}
-
 	public listen() {
 		this.client.listen(serverConfig.port, serverConfig.hostName, () => {
 			console.log(

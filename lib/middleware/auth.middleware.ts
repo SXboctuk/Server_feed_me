@@ -6,15 +6,23 @@ const verifyAuthToken = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const token = req.cookies["jwt"];
+	try {
+		const token = req.cookies["jwt"];
 
-	const userPayload = tokenUtils.verifyToken(token);
+		if (!token) {
+			res.status(500).send("auth");
+		}
 
-	req.body = {
-		...req.body,
-		userPayload,
-		token,
-	};
+		const userPayload = tokenUtils.verifyToken(token);
+
+		req.body = {
+			...req.body,
+			userPayload,
+			token,
+		};
+	} catch (err) {
+		res.json(err);
+	}
 
 	await next();
 };

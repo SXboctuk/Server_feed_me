@@ -4,6 +4,7 @@ import { Model, UUIDV4 } from "sequelize";
 
 interface CookbookAttributes {
 	id: string;
+	imagePath: string;
 	title: string;
 	description: string;
 	isVegatarian: string;
@@ -24,6 +25,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 		 */
 
 		id!: string;
+		imagePath!: string;
 		title!: string;
 		description!: string;
 		isVegatarian!: string;
@@ -32,19 +34,20 @@ module.exports = (sequelize: any, DataTypes: any) => {
 		view!: number;
 		static associate(models: any) {
 			Cookbook.belongsTo(models.User);
+			Cookbook.hasMany(models.CookbookComment);
 			Cookbook.belongsToMany(models.User, {
 				as: "CookbookUserLike",
-				foreignKey: "cookbookid",
-				through: "likeCookbook",
+				foreignKey: "Cookbookid",
+				through: "CookbookLike",
 			});
 			Cookbook.belongsToMany(models.User, {
 				as: "CookbookUserSave",
-				foreignKey: "cookbookid",
-				through: "saveCookbook",
+				foreignKey: "Cookbookid",
+				through: "CookbookSave",
 			});
 			Cookbook.belongsToMany(models.Recepie, {
 				as: "CookbookRecepie",
-				foreignKey: "cookbookid",
+				foreignKey: "Cookbookid",
 				through: "RecepieInCookbook",
 			});
 		}
@@ -56,6 +59,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
 				defaultValue: UUIDV4,
 				allowNull: false,
 				primaryKey: true,
+			},
+			imagePath: {
+				type: DataTypes.STRING,
+				allowNull: false,
 			},
 			title: {
 				type: DataTypes.STRING,

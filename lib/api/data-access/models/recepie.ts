@@ -8,6 +8,8 @@ interface RecepieAttributes {
 	title: string;
 	description: string;
 	cookingTime: number;
+	ingredients: string;
+	directions: string;
 	view: number;
 }
 
@@ -25,29 +27,29 @@ module.exports = (sequelize: any, DataTypes: any) => {
 		id!: string;
 		imagePath!: string;
 		title!: string;
+		ingredients!: string;
+		directions!: string;
 		description!: string;
 		cookingTime!: number;
 		view!: number;
 		static associate(models: any) {
-			Recepie.hasMany(models.Direction);
-			Recepie.hasMany(models.Ingredient);
 			Recepie.hasMany(models.RecepieComment);
 
 			Recepie.belongsTo(models.User);
 			Recepie.belongsToMany(models.User, {
 				as: "RecepieUserLike",
-				foreignKey: "recepieid",
-				through: "likeRecepie",
+				foreignKey: "RecepieId",
+				through: "RecepieLike",
 			});
 			Recepie.belongsToMany(models.User, {
 				as: "RecepieUserSave",
-				foreignKey: "recepieid",
-				through: "saveRecepie",
+				foreignKey: "RecepieId",
+				through: "RecepieSave",
 			});
 
 			Recepie.belongsToMany(models.Cookbook, {
 				as: "RecepieCookbook",
-				foreignKey: "recepieid",
+				foreignKey: "RecepieId",
 				through: "RecepieInCookbook",
 			});
 		}
@@ -74,6 +76,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
 			},
 			cookingTime: {
 				type: DataTypes.INTEGER,
+				allowNull: false,
+			},
+			ingredients: {
+				type: DataTypes.STRING,
+				allowNull: false,
+			},
+			directions: {
+				type: DataTypes.STRING,
 				allowNull: false,
 			},
 			view: {

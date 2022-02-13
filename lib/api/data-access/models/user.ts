@@ -28,27 +28,27 @@ module.exports = (sequelize: any, DataTypes: any) => {
 		static associate(models: any) {
 			User.hasMany(models.Recepie);
 			User.belongsToMany(models.Recepie, {
-				as: "UserRecepilike",
-				foreignKey: "userid",
-				through: "likeRecepie",
+				as: "UserRecepiLike",
+				foreignKey: "UserId",
+				through: "RecepieLike",
 			});
 			User.belongsToMany(models.Recepie, {
 				as: "UserRecepieSave",
-				foreignKey: "userid",
-				through: "saveRecepie",
+				foreignKey: "UserId",
+				through: "RecepieSave",
 			});
 			User.hasMany(models.RecepieComment);
 
 			User.hasMany(models.Cookbook);
 			User.belongsToMany(models.Cookbook, {
-				as: "UserCookbooklike",
-				foreignKey: "userid",
-				through: "likeCookbook",
+				as: "UserCookbookLike",
+				foreignKey: "UserId",
+				through: "CookbookLike",
 			});
 			User.belongsToMany(models.Cookbook, {
 				as: "UserCookbookSave",
-				foreignKey: "userid",
-				through: "saveCookbook",
+				foreignKey: "UserId",
+				through: "CookbookSave",
 			});
 			User.hasMany(models.CookbookComment);
 		}
