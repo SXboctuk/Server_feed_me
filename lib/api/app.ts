@@ -6,6 +6,7 @@ import db from "./data-access/models";
 import mainRoute from "./routes";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
+import { seedData } from "./data-access/seedData";
 
 export class App {
 	client: Express;
@@ -19,8 +20,41 @@ export class App {
 	}
 	//{ force: true }
 	connectDb() {
-		db.sequelize.sync().then(() => {
-			console.log(`Database connected`);
+		db.sequelize.sync({ force: true }).then(async () => {
+			// seed data
+
+			seedData.users.forEach(async (elem) => {
+				await db.User.create(elem);
+			});
+
+			seedData.recepies.forEach(async (elem) => {
+				const recepie = await db.Recepie.create(elem).catch(
+					(err: any) => console.log(err)
+				);
+				const user = await db.User.findByPk(elem.UserId);
+				await recepie.addRecepieUserSave(user);
+			});
+
+			seedData.cookbooks.forEach(async (elem) => {
+				const { Recepies, ...rest } = elem;
+				const cookbook = await db.Cookbook.create(rest).catch(
+					(err: any) => console.log(err)
+				);
+				const user = await db.User.findByPk(elem.UserId);
+				await cookbook.addCookbookUserSave(user);
+				Recepies.forEach(async (recepieId) => {
+					await cookbook.addCookbookRecepie(
+						await db.Recepie.findByPk(recepieId)
+					);
+				});
+			});
+
+			// seedData.recepiesInCookbooks.forEach(async (elem) => {
+			// 	const cookbook = await db.Cookbook.findByPk(elem.CookbookId);
+			// 	const recepie = await db.Recepie.findByPk(elem.RecepieId);
+			// 	console.log(cookbook);
+			// 	await cookbook.addCookbookRecepie(recepie);
+			// });
 		});
 	}
 

@@ -74,7 +74,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
 				unique: true,
 			},
 			userText: {
-				type: DataTypes.STRING,
+				type: DataTypes.STRING(512),
 				allowNull: false,
 			},
 			passwordHash: {
