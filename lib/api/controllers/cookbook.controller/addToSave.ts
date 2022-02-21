@@ -5,7 +5,9 @@ const addToSave = async (req: Request, res: Response, next: NextFunction) => {
 	const { id } = req.params;
 	const { userPayload } = req.body;
 	try {
-		res.send(await cookbookService.addToSave(id, userPayload.id));
+		const response = await cookbookService.addToSave(id, userPayload.id);
+
+		return res.json(response);
 	} catch (err) {
 		next(err);
 	}

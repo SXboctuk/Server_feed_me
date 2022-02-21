@@ -4,7 +4,7 @@ import { cookbookService } from "../../services";
 const get = async (req: Request, res: Response, next: NextFunction) => {
 	const { id } = req.params;
 	try {
-		res.send(await cookbookService.get(id));
+		res.send(await cookbookService.get(id, req));
 	} catch (err) {
 		next(err);
 	}

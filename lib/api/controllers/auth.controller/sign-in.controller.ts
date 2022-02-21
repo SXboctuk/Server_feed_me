@@ -10,14 +10,15 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
 			password,
 		});
 
-		res.cookie("jwt", token);
+		res.cookie("jwt", token, { httpOnly: false });
 
-		res.json({
-			body: {
-				message: MESSAGES.AUTH.SUCCESS.BASE_SUCCESS,
-				...account.dataValues,
-				token: token,
-			},
+		return res.json({
+			userName: account.name,
+			id: account.id,
+			role: "user",
+			userText: account.userText,
+			email: account.email,
+			image: account.imagePath,
 		});
 	} catch (err) {
 		next(err);

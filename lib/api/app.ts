@@ -15,8 +15,14 @@ export class App {
 		this.client = express();
 	}
 
+	connectStatic() {
+		this.client.use("/uploads", express.static("uploads"));
+	}
+
 	connectCors() {
-		this.client.use(cors());
+		this.client.use(
+			cors({ credentials: true, origin: "http://localhost:8080" })
+		);
 	}
 	//{ force: true }
 	connectDb() {

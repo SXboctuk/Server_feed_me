@@ -1,4 +1,4 @@
-import { InternalError } from "../../../helpers/errors";
+import { ExternalError, InternalError } from "../../../helpers/errors";
 import db from "../../data-access/models";
 
 const addToSave = async (cookbookId: string, userId: string) => {
@@ -8,18 +8,38 @@ const addToSave = async (cookbookId: string, userId: string) => {
 				.then(async (user: any) => {
 					const isCookbookSaved = await user
 						.hasUserCookbookSave(cookbook)
-						.catch((err: any) => new InternalError(err));
+						.catch((err: any) => {
+							throw new ExternalError({
+								message: err.message,
+								status: 403,
+							});
+						});
 					if (isCookbookSaved) {
 						return { message: "This cookbook already added" };
 					} else {
 						return await user
 							.addUserCookbookSave(cookbook)
-							.catch((err: any) => new InternalError(err));
+							.catch((err: any) => {
+								throw new ExternalError({
+									message: err.message,
+									status: 403,
+								});
+							});
 					}
 				})
-				.catch((err: any) => new InternalError(err));
+				.catch((err: any) => {
+					throw new ExternalError({
+						message: err.message,
+						status: 403,
+					});
+				});
 		})
-		.catch((err: any) => new InternalError(err));
+		.catch((err: any) => {
+			throw new ExternalError({
+				message: err.message,
+				status: 403,
+			});
+		});
 };
 
 export default addToSave;

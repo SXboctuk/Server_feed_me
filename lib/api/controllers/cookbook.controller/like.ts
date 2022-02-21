@@ -5,7 +5,9 @@ const like = async (req: Request, res: Response, next: NextFunction) => {
 	const { userPayload } = req.body;
 	const { id } = req.params;
 	try {
-		res.send(await cookbookService.like(userPayload.id, id));
+		const response = await cookbookService.like(userPayload.id, id);
+
+		res.json(response);
 	} catch (err) {
 		next(err);
 	}

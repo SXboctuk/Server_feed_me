@@ -5,7 +5,9 @@ const deleteById = async (req: Request, res: Response, next: NextFunction) => {
 	const { id } = req.params;
 	const { userPayload } = req.body;
 	try {
-		res.send(await cookbookService.deleteById(id, userPayload.id));
+		const response = await cookbookService.deleteById(id, userPayload.id);
+
+		res.json(response);
 	} catch (err) {
 		next(err);
 	}

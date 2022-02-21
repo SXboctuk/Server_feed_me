@@ -11,7 +11,7 @@ const addComment = async (req: Request, res: Response, next: NextFunction) => {
 		);
 
 		res.json({
-			...comment.dataValues,
+			...comment,
 		});
 	} catch (err) {
 		next(err);

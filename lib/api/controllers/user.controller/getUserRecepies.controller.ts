@@ -8,7 +8,7 @@ const getUserRecepies = async (
 ) => {
 	const { id } = req.params;
 	try {
-		res.json(await userServices.getUserRecepies(id));
+		res.json(await userServices.getUserRecepies(id, req));
 	} catch (err) {
 		next(err);
 	}

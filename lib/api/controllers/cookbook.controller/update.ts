@@ -14,19 +14,18 @@ const update = async (req: Request, res: Response, next: NextFunction) => {
 	} = req.body;
 	const image = req.files?.image;
 	try {
-		res.send(
-			await cookbookService.update(
-				cookbookId,
-				image,
-				title,
-				isVegatarian,
-				isWithoutMilk,
-				isWithouEggs,
-				description,
-				recepieIdList,
-				userPayload.id
-			)
+		const cookbook = await cookbookService.update(
+			cookbookId,
+			image,
+			title,
+			isVegatarian,
+			isWithoutMilk,
+			isWithouEggs,
+			description,
+			recepieIdList,
+			userPayload.id
 		);
+		res.send("super");
 	} catch (err) {
 		next(err);
 	}

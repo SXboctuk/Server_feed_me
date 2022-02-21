@@ -12,11 +12,12 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
 		});
 		res.cookie("jwt", token);
 		res.json({
-			message: "super",
-			body: {
-				...account.dataValues,
-				token: token,
-			},
+			userName: account.name,
+			id: account.id,
+			role: "user",
+			userText: account.userText,
+			email: account.email,
+			image: account.imagePath,
 		});
 	} catch (err: any) {
 		next(err);

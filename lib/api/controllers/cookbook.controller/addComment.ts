@@ -4,13 +4,15 @@ import { cookbookService } from "../../services";
 const addComment = async (req: Request, res: Response, next: NextFunction) => {
 	const { userPayload, commentText, cookbookId } = req.body;
 	try {
-		res.send(
-			await cookbookService.addComment(
-				cookbookId,
-				userPayload.id,
-				commentText
-			)
+		const comment = await cookbookService.addComment(
+			cookbookId,
+			userPayload.id,
+			commentText
 		);
+
+		res.json({
+			...comment,
+		});
 	} catch (err) {
 		next(err);
 	}

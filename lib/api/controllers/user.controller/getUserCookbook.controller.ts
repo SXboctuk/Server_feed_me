@@ -8,7 +8,7 @@ const getUserCookbooks = async (
 ) => {
 	const { id } = req.params;
 	try {
-		res.json(await userServices.getUserCookbooks(id));
+		res.json(await userServices.getUserCookbooks(id, req));
 	} catch (err) {
 		next(err);
 	}

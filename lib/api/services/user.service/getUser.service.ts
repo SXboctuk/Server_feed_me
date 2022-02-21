@@ -4,6 +4,13 @@ import { ExternalError } from "../../../helpers/errors";
 import db from "../../data-access/models";
 
 const getUser = async (id: string) => {
-	return await db.User.findOne({ where: { id: id } });
+	const user = await db.User.findOne({ where: { id: id } });
+
+	return {
+		id: user.id,
+		userName: user.name,
+		imageSrc: user.imagePath,
+		userText: user.userText,
+	};
 };
 export default getUser;

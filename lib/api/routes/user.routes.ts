@@ -14,7 +14,7 @@ userRoute.post(
 userRoute.post(
 	"/changeimage",
 	middlewares.verifyAuthToken,
-	...validator.user.changeImage,
+	// ...validator.user.changeImage,
 	userControllers.changeImage
 );
 userRoute.post(
@@ -37,8 +37,15 @@ userRoute.post(
 );
 
 userRoute.get("/get/:id", userControllers.getUser);
+userRoute.get("/get", userControllers.getUsers);
 userRoute.get("/getrecepies/:id", userControllers.getUserRecepies);
 
 userRoute.get("/getcookbooks/:id", userControllers.getUserCookbooks);
+
+userRoute.get(
+	"/deleteuser",
+	middlewares.verifyAuthToken,
+	userControllers.deleteUser
+);
 
 export default userRoute;

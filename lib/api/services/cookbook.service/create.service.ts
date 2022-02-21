@@ -46,7 +46,7 @@ const create = async (
 					await commonUtils
 						.safeJsonParse(recepieIdList)
 						.forEach(async (elem: any) => {
-							await db.Recepie.findByPk(elem.id)
+							await db.Recepie.findByPk(elem)
 								.then(async (recepie: any) => {
 									await cookbook.addCookbookRecepie(recepie);
 								})

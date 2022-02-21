@@ -1,4 +1,4 @@
-import { InternalError } from "../../../helpers/errors";
+import { ExternalError, InternalError } from "../../../helpers/errors";
 import db from "../../data-access/models";
 
 const addToSave = async (recepieId: string, userId: string) => {
@@ -8,18 +8,35 @@ const addToSave = async (recepieId: string, userId: string) => {
 				.then(async (user: any) => {
 					const isRecepieSaved = await user
 						.hasUserRecepieSave(recepie)
-						.catch((err: any) => new InternalError(err));
+						.catch((err: any) => {
+							throw new ExternalError({
+								message: err.message,
+								status: 403,
+							});
+						});
 					if (isRecepieSaved) {
 						return { message: "This recepie already added" };
 					} else {
 						return await user
 							.addUserRecepieSave(recepie)
-							.catch((err: any) => new InternalError(err));
+							.catch((err: any) => {
+								throw new ExternalError({
+									message: err.message,
+									status: 403,
+								});
+							});
 					}
 				})
-				.catch((err: any) => new InternalError(err));
+				.catch((err: any) => {
+					throw new ExternalError({
+						message: err.message,
+						status: 403,
+					});
+				});
 		})
-		.catch((err: any) => new InternalError(err));
+		.catch((err: any) => {
+			throw new ExternalError({ message: err.message, status: 403 });
+		});
 };
 
 export default addToSave;

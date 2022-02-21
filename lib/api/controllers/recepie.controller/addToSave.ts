@@ -6,9 +6,9 @@ const addToSave = async (req: Request, res: Response, next: NextFunction) => {
 	const { id } = req.params;
 	const { userPayload } = req.body;
 	try {
-		const responce = await recepieService.addToSave(id, userPayload.id);
+		const response = await recepieService.addToSave(id, userPayload.id);
 
-		res.json(responce);
+		return res.json(response);
 	} catch (err) {
 		next(err);
 	}

@@ -1,4 +1,4 @@
-import { InternalError } from "../../../helpers/errors";
+import { ExternalError, InternalError } from "../../../helpers/errors";
 import db from "../../data-access/models";
 
 const like = async (userId: string, cookookId: string) => {
@@ -11,24 +11,42 @@ const like = async (userId: string, cookookId: string) => {
 			console.log(await cookbook.getCookbookUserLike());
 			const save = await cookbook
 				.hasCookbookUserLike(user)
-				.catch((err: any) => new InternalError(err));
+				.catch((err: any) => {
+					throw new ExternalError({
+						message: err.message,
+						status: 403,
+					});
+				});
 			let counter;
 			if (save) {
 				await cookbook
 					.removeCookbookUserLike(user)
-					.catch((err: any) => new InternalError(err));
+					.catch((err: any) => {
+						throw new ExternalError({
+							message: err.message,
+							status: 403,
+						});
+					});
 				counter = await cookbook.countCookbookUserLike();
 
 				return { value: false, counter: counter };
 			} else {
-				await cookbook
-					.addCookbookUserLike(user)
-					.catch((err: any) => new InternalError(err));
+				await cookbook.addCookbookUserLike(user).catch((err: any) => {
+					throw new ExternalError({
+						message: err.message,
+						status: 403,
+					});
+				});
 				counter = await cookbook.countCookbookUserLike();
 				return { value: true, counter: counter };
 			}
 		})
-		.catch((err: any) => new InternalError(err));
+		.catch((err: any) => {
+			throw new ExternalError({
+				message: err.message,
+				status: 403,
+			});
+		});
 };
 
 export default like;

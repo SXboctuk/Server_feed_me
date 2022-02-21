@@ -17,7 +17,7 @@ export const saveFiles = async (
 	let res: FileElementResponse;
 	await writeFile(`${uploadFolder}/${file.originalname}`, file.buffer);
 	res = {
-		url: `${dateFolder}/${file.originalname}`,
+		url: `http://localhost:3000/uploads/${dateFolder}/${file.originalname}`,
 		name: file.originalname,
 	};
 	return res;

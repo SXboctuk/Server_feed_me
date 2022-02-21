@@ -1,4 +1,5 @@
 import express, { Express } from "express";
+import { urlToHttpOptions } from "url";
 import { App } from "./api/app";
 
 export class Server {
@@ -9,6 +10,7 @@ export class Server {
 	}
 
 	start() {
+		this.app.connectStatic();
 		this.app.connectCors();
 		this.app.connectDb();
 		this.app.connectMiddlewares();

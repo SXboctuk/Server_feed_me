@@ -5,7 +5,7 @@ const deleteById = async (cookbookId: string, userId: string) => {
 		async (cookbook: any) => {
 			return await db.User.findByPk(userId).then(async (user: any) => {
 				const isOwner = cookbook.UserId === user.id;
-
+				console.log(cookbook, user);
 				if (isOwner) {
 					await cookbook.destroy();
 					return { message: "cookbook deleted" };
