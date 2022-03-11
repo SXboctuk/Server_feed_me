@@ -21,7 +21,7 @@ const verifyAuthToken = async (
 			token,
 		};
 	} catch (err) {
-		return res.json(err);
+		return res.status(403).json(err);
 	}
 	next();
 };

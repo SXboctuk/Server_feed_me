@@ -5,13 +5,17 @@ import { authServices } from "../../services";
 const tokenAuth = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { userPayload } = req.body;
-		const { account } = await authServices.tokenAuth(userPayload.id);
+		const { token, account } = await authServices.tokenAuth(userPayload.id);
 
-		res.json({
-			body: {
-				message: MESSAGES.AUTH.SUCCESS.BASE_SUCCESS,
-				...account.dataValues,
-			},
+		res.cookie("jwt", token, { httpOnly: false });
+
+		return res.json({
+			userName: account.name,
+			id: account.id,
+			role: "user",
+			userText: account.userText,
+			email: account.email,
+			image: account.imagePath,
 		});
 	} catch (err) {
 		next(err);
