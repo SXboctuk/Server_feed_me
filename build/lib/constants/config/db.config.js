@@ -14,13 +14,13 @@ exports.dbConfig = {
         password: "pass",
         database: "database_test",
         host: "127.0.0.1",
-        dialect: "mysql",
+        dialect: "postgres",
     },
     production: {
-        username: "root",
+        username: "postgres",
         password: "pass",
-        database: "database_production",
-        host: "127.0.0.1",
-        dialect: "mysql",
+        database: "postgresql-globular-01476",
+        host: "localhost",
+        dialect: "postgres",
     },
 };

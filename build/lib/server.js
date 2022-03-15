@@ -9,7 +9,7 @@ class Server {
     start() {
         this.app.connectStatic();
         this.app.connectCors();
-        this.app.connectDb();
+        // this.app.connectDb();
         this.app.connectMiddlewares();
         this.app.connectRoutes();
         this.app.connectErrorHandlers();

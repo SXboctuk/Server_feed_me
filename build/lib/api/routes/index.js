@@ -13,4 +13,7 @@ mainRoute.use("/auth", auth_routes_1.default);
 mainRoute.use("/user", user_routes_1.default);
 mainRoute.use("/recepie", recepie_routes_1.default);
 mainRoute.use("/cookbook", cookbook_routes_1.default);
+mainRoute.use("/", (req, res) => {
+    res.end(`<h1> Hello its me</h1>`);
+});
 exports.default = mainRoute;
