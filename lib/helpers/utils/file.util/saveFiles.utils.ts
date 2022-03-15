@@ -8,17 +8,17 @@ export interface FileElementResponse {
 }
 
 export const saveFiles = async (
-	file: MFile,
-	dataFolderName: string
+    file: MFile,
+    dataFolderName: string
 ): Promise<FileElementResponse> => {
-	const dateFolder = dataFolderName;
-	const uploadFolder = `${path}/uploads/${dateFolder}`;
-	await ensureDir(uploadFolder);
-	let res: FileElementResponse;
-	await writeFile(`${uploadFolder}/${file.originalname}`, file.buffer);
-	res = {
-		url: `http://localhost:3000/uploads/${dateFolder}/${file.originalname}`,
-		name: file.originalname,
-	};
-	return res;
+    const dateFolder = dataFolderName;
+    const uploadFolder = `${path}/uploads/${dateFolder}`;
+    await ensureDir(uploadFolder);
+    let res: FileElementResponse;
+    await writeFile(`${uploadFolder}/${file.originalname}`, file.buffer);
+    res = {
+        url: `http://localhost:3000/uploads/${dateFolder}/${file.originalname}`,
+        name: file.originalname,
+    };
+    return res;
 };

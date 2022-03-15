@@ -4,21 +4,21 @@ import { authUtils } from "../../../helpers/utils/auth.util";
 import db from "../../data-access/models";
 
 const tokenAuth = async (userId: string) => {
-	let account = await db.User.findOne({ where: { id: userId } });
+    const account = await db.User.findOne({ where: { id: userId } });
 
-	if (!account) {
-		throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST });
-	}
+    if (!account) {
+        throw new AuthError({ message: MESSAGES.AUTH.ERROR.EMAIL_NOT_EXIST });
+    }
 
-	const token = authUtils.generateAuthToken({
-		email: account.email,
-		id: account.id,
-	});
+    const token = authUtils.generateAuthToken({
+        email: account.email,
+        id: account.id,
+    });
 
-	return {
-		account,
-		token,
-	};
+    return {
+        account,
+        token,
+    };
 };
 
 export default tokenAuth;

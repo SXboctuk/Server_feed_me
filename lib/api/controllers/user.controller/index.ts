@@ -10,14 +10,14 @@ import getUserRecepies from "./getUserRecepies.controller";
 import getUsers from "./getUsers.controller";
 
 export const userControllers = {
-	changeEmail,
-	changeImage,
-	changeName,
-	changePassword,
-	changeUserText,
-	getUser,
-	getUsers,
-	getUserCookbooks,
-	getUserRecepies,
-	deleteUser,
+    changeEmail,
+    changeImage,
+    changeName,
+    changePassword,
+    changeUserText,
+    getUser,
+    getUsers,
+    getUserCookbooks,
+    getUserRecepies,
+    deleteUser,
 };

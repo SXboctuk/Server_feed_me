@@ -1,6 +1,6 @@
 export const cookbooksLikes = [
-	{
-		RecepieId: "",
-		UserId: "",
-	},
+    {
+        RecepieId: "",
+        UserId: "",
+    },
 ];

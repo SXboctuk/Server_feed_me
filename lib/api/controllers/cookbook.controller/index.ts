@@ -8,12 +8,12 @@ import like from "./like";
 import update from "./update";
 
 export const cookbookController = {
-	create,
-	deleteById,
-	update,
-	get,
-	addComment,
-	like,
-	addToSave,
-	getAll,
+    create,
+    deleteById,
+    update,
+    get,
+    addComment,
+    like,
+    addToSave,
+    getAll,
 };

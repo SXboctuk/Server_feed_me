@@ -3,19 +3,19 @@ import { urlToHttpOptions } from "url";
 import { App } from "./api/app";
 
 export class Server {
-	app;
+    app;
 
-	constructor() {
-		this.app = new App();
-	}
+    constructor() {
+        this.app = new App();
+    }
 
-	start() {
-		this.app.connectStatic();
-		this.app.connectCors();
-		this.app.connectDb();
-		this.app.connectMiddlewares();
-		this.app.connectRoutes();
-		this.app.connectErrorHandlers();
-		this.app.listen();
-	}
+    start() {
+        this.app.connectStatic();
+        this.app.connectCors();
+        this.app.connectDb();
+        this.app.connectMiddlewares();
+        this.app.connectRoutes();
+        this.app.connectErrorHandlers();
+        this.app.listen();
+    }
 }

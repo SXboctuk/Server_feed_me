@@ -1,6 +1,6 @@
 export const recepiesSaved = [
-	{
-		RecepieId: "",
-		UserId: "",
-	},
+    {
+        RecepieId: "",
+        UserId: "",
+    },
 ];

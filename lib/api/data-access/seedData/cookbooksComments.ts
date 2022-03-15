@@ -1,8 +1,8 @@
 export const cookbooksComments = [
-	{
-		id: "",
-		text: "",
-		CookbookId: "",
-		UserId: "",
-	},
+    {
+        id: "",
+        text: "",
+        CookbookId: "",
+        UserId: "",
+    },
 ];

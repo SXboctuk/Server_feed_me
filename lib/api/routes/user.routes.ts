@@ -6,34 +6,34 @@ import { userControllers } from "../controllers";
 const userRoute = Router();
 
 userRoute.post(
-	"/changeemail",
-	middlewares.verifyAuthToken,
-	...validator.user.changeEmail,
-	userControllers.changeEmail
+    "/changeemail",
+    middlewares.verifyAuthToken,
+    ...validator.user.changeEmail,
+    userControllers.changeEmail
 );
 userRoute.post(
-	"/changeimage",
-	middlewares.verifyAuthToken,
-	// ...validator.user.changeImage,
-	userControllers.changeImage
+    "/changeimage",
+    middlewares.verifyAuthToken,
+    // ...validator.user.changeImage,
+    userControllers.changeImage
 );
 userRoute.post(
-	"/changename",
-	middlewares.verifyAuthToken,
-	...validator.user.changeName,
-	userControllers.changeName
+    "/changename",
+    middlewares.verifyAuthToken,
+    ...validator.user.changeName,
+    userControllers.changeName
 );
 userRoute.post(
-	"/changepassword",
-	middlewares.verifyAuthToken,
-	...validator.user.changePassword,
-	userControllers.changePassword
+    "/changepassword",
+    middlewares.verifyAuthToken,
+    ...validator.user.changePassword,
+    userControllers.changePassword
 );
 userRoute.post(
-	"/changeusertext",
-	middlewares.verifyAuthToken,
-	...validator.user.changeUserText,
-	userControllers.changeUserText
+    "/changeusertext",
+    middlewares.verifyAuthToken,
+    ...validator.user.changeUserText,
+    userControllers.changeUserText
 );
 
 userRoute.get("/get/:id", userControllers.getUser);
@@ -43,9 +43,9 @@ userRoute.get("/getrecepies/:id", userControllers.getUserRecepies);
 userRoute.get("/getcookbooks/:id", userControllers.getUserCookbooks);
 
 userRoute.get(
-	"/deleteuser",
-	middlewares.verifyAuthToken,
-	userControllers.deleteUser
+    "/deleteuser",
+    middlewares.verifyAuthToken,
+    userControllers.deleteUser
 );
 
 export default userRoute;

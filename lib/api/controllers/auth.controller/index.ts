@@ -3,7 +3,7 @@ import signUp from "./sign-up.controller";
 import tokenAuth from "./tokenAuth.controller";
 
 export const authControllers = {
-	signIn,
-	signUp,
-	tokenAuth,
+    signIn,
+    signUp,
+    tokenAuth,
 };

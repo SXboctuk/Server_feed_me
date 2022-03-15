@@ -5,26 +5,26 @@ import { ExternalError } from "../../../helpers/errors";
 import db from "../../data-access/models";
 
 const changeEmail = async (newEmail: string, id: string) => {
-	const user = await db.User.findOne({ where: { id: id } });
+    const user = await db.User.findOne({ where: { id: id } });
 
-	if (user.email === newEmail) {
-		throw new ExternalError({
-			message: MESSAGES.USER.VALUE_IS_SAME,
-			status: CODE_STATUSES.BAD_REQUEST,
-		});
-	}
+    if (user.email === newEmail) {
+        throw new ExternalError({
+            message: MESSAGES.USER.VALUE_IS_SAME,
+            status: CODE_STATUSES.BAD_REQUEST,
+        });
+    }
 
-	const userCheck = await db.User.findOne({ where: { email: newEmail } });
+    const userCheck = await db.User.findOne({ where: { email: newEmail } });
 
-	if (userCheck?.email === newEmail) {
-		throw new ExternalError({
-			message: MESSAGES.USER.EMAIL_EXISTS,
-			status: CODE_STATUSES.BAD_REQUEST,
-		});
-	}
+    if (userCheck?.email === newEmail) {
+        throw new ExternalError({
+            message: MESSAGES.USER.EMAIL_EXISTS,
+            status: CODE_STATUSES.BAD_REQUEST,
+        });
+    }
 
-	return await db.User.findOne({ where: { id: id } }).then((user: any) =>
-		user.update({ email: newEmail })
-	);
+    return await db.User.findOne({ where: { id: id } }).then((user: any) =>
+        user.update({ email: newEmail })
+    );
 };
 export default changeEmail;

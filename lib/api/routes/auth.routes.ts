@@ -8,9 +8,9 @@ const authRoute = Router();
 authRoute.post("/sign-in", validator.auth.signIn, authControllers.signIn);
 authRoute.post("/sign-up", validator.auth.signUp, authControllers.signUp);
 authRoute.get(
-	"/tokenAuth",
-	middlewares.verifyAuthToken,
-	authControllers.tokenAuth
+    "/tokenAuth",
+    middlewares.verifyAuthToken,
+    authControllers.tokenAuth
 );
 
 export default authRoute;

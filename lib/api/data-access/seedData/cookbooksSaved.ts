@@ -1,6 +1,6 @@
 export const recepiesSaved = [
-	{
-		CookbookId: "",
-		UserId: "",
-	},
+    {
+        CookbookId: "",
+        UserId: "",
+    },
 ];

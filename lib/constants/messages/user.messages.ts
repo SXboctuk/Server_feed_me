@@ -3,7 +3,7 @@ const CHANGED_SUCCESS = "Changes were successfully.";
 const EMAIL_EXISTS = "";
 
 export const USER = {
-	EMAIL_EXISTS,
-	VALUE_IS_SAME,
-	CHANGED_SUCCESS,
+    EMAIL_EXISTS,
+    VALUE_IS_SAME,
+    CHANGED_SUCCESS,
 };

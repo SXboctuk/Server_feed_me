@@ -4,8 +4,8 @@ import { recepieController } from "./recepie.controller";
 import { userControllers } from "./user.controller";
 
 export {
-	authControllers,
-	userControllers,
-	recepieController,
-	cookbookController,
+    authControllers,
+    userControllers,
+    recepieController,
+    cookbookController,
 };

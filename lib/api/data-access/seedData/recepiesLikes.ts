@@ -1,6 +1,6 @@
 export const recepiesLikes = [
-	{
-		RecepieId: "",
-		UserId: "",
-	},
+    {
+        RecepieId: "",
+        UserId: "",
+    },
 ];

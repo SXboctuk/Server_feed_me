@@ -8,12 +8,12 @@ import like from "./like.service";
 import update from "./update.service";
 
 export const recepieService = {
-	create,
-	deleteById,
-	get,
-	update,
-	addComment,
-	like,
-	addToSave,
-	getAll,
+    create,
+    deleteById,
+    get,
+    update,
+    addComment,
+    like,
+    addToSave,
+    getAll,
 };

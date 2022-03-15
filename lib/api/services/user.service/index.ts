@@ -10,14 +10,14 @@ import getUserRecepies from "./getUserRecepies.service";
 import getUsers from "./getUsers.service";
 
 export const userServices = {
-	changeImage,
-	changeEmail,
-	changeName,
-	changePassword,
-	changeUserText,
-	getUser,
-	getUsers,
-	getUserRecepies,
-	getUserCookbooks,
-	deleteUser,
+    changeImage,
+    changeEmail,
+    changeName,
+    changePassword,
+    changeUserText,
+    getUser,
+    getUsers,
+    getUserRecepies,
+    getUserCookbooks,
+    deleteUser,
 };
