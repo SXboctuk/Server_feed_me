@@ -11,6 +11,6 @@ mainRoute.use("/user", userRoute);
 mainRoute.use("/recepie", recepieRoute);
 mainRoute.use("/cookbook", cookbookRoute);
 mainRoute.use("/", (req, res) => {
-  res.end(`<h1> Hello its me</h1>`);
+    res.end(`<h1> Hello its me</h1>`);
 });
 export default mainRoute;
