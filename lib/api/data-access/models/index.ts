@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
-import { dbConfig } from "../../../constants/config";
+const env = process.env.NODE_ENV || 'development';
+import { dbConfig } from '../../../constants/config';
 const db: any = {};
 
 let sequelize: any;
 
-if (env === "development") {
+if (env === 'development') {
     sequelize = new Sequelize(
         dbConfig.development.database,
         dbConfig.development.username,
@@ -18,9 +18,9 @@ if (env === "development") {
         {
             host: dbConfig.development.host,
             dialect: dbConfig.development.dialect,
-        }
+        },
     );
-} else if (env === "test") {
+} else if (env === 'test') {
     sequelize = new Sequelize(
         dbConfig.test.database,
         dbConfig.test.username,
@@ -28,9 +28,9 @@ if (env === "development") {
         {
             host: dbConfig.test.host,
             dialect: dbConfig.test.dialect,
-        }
+        },
     );
-} else if (env === "production") {
+} else if (env === 'production') {
     sequelize = new Sequelize(
         dbConfig.production.database,
         dbConfig.production.username,
@@ -38,22 +38,22 @@ if (env === "development") {
         {
             host: dbConfig.production.host,
             dialect: dbConfig.production.dialect,
-        }
+        },
     );
 }
 
 fs.readdirSync(__dirname)
     .filter((file: string) => {
         return (
-            file.indexOf(".") !== 0 &&
-			file !== basename &&
-			file.slice(-3) === ".ts"
+            file.indexOf('.') !== 0 &&
+            file !== basename &&
+            file.slice(-3) === '.ts'
         );
     })
     .forEach((file: any) => {
         const model = require(path.join(__dirname, file))(
             sequelize,
-            Sequelize.DataTypes
+            Sequelize.DataTypes,
         );
         db[model.name] = model;
     });
