@@ -31,23 +31,29 @@ if (env === 'development') {
         },
     );
 } else if (env === 'production') {
-    // sequelize = new Sequelize(
-    //     dbConfig.production.database,
-    //     dbConfig.production.username,
-    //     dbConfig.production.password,
-    //     {
-    //         host: dbConfig.production.host,
-    //         dialect: dbConfig.production.dialect,
-    //     },
-    // );
-    sequelize = new Sequelize(process.env.DATABASE_URL, {
-        dialectOptions: {
-            ssl: {
-                require: true,
-                rejectUnauthorized: false,
+    sequelize = new Sequelize(
+        dbConfig.production.database,
+        dbConfig.production.username,
+        dbConfig.production.password,
+        {
+            host: dbConfig.production.host,
+            dialect: dbConfig.production.dialect,
+            dialectOptions: {
+                ssl: {
+                    require: true,
+                    rejectUnauthorized: false,
+                },
             },
         },
-    });
+    );
+    // sequelize = new Sequelize(process.env.DATABASE_URL, {
+    //     dialectOptions: {
+    //         ssl: {
+    //             require: true,
+    //             rejectUnauthorized: false,
+    //         },
+    //     },
+    // });
 }
 
 fs.readdirSync(__dirname)
