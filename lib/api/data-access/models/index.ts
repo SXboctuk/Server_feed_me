@@ -40,7 +40,14 @@ if (env === 'development') {
     //         dialect: dbConfig.production.dialect,
     //     },
     // );
-    sequelize = new Sequelize(process.env.DATABASE_URL);
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false,
+            },
+        },
+    });
 }
 
 fs.readdirSync(__dirname)
