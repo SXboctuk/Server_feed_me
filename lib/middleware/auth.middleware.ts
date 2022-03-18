@@ -10,7 +10,7 @@ const verifyAuthToken = async (
         const token = req.cookies['jwt'];
 
         if (!token) {
-            res.status(403).json({ message: 'auth error' }).end();
+            return res.status(403).json({ message: 'auth error' }).end();
         }
 
         const userPayload = tokenUtils.verifyToken(token);
