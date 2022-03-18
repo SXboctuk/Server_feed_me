@@ -20,10 +20,10 @@ const verifyAuthToken = async (
             userPayload,
             token,
         };
+        next();
     } catch (err) {
         return res.status(403).json(err).end();
     }
-    next();
 };
 
 export { verifyAuthToken };
