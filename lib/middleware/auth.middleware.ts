@@ -1,16 +1,16 @@
-import { NextFunction, Response, Request } from "express";
-import { tokenUtils } from "../helpers";
+import { NextFunction, Response, Request } from 'express';
+import { tokenUtils } from '../helpers';
 
 const verifyAuthToken = async (
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
 ) => {
     try {
-        const token = req.cookies["jwt"];
+        const token = req.cookies['jwt'];
 
         if (!token) {
-            res.status(500).json({ message: "auth error" });
+            res.status(500).json({ message: 'auth error' }).end();
         }
 
         const userPayload = tokenUtils.verifyToken(token);
@@ -21,7 +21,7 @@ const verifyAuthToken = async (
             token,
         };
     } catch (err) {
-        return res.status(403).json(err);
+        return res.status(403).json(err).end();
     }
     next();
 };
