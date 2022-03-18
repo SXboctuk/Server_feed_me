@@ -21,7 +21,7 @@ export class App {
 
     connectCors() {
         this.client.use(
-            cors({ credentials: true, origin: 'http://localhost:8080' }),
+            cors({ credentials: true, origin: 'https://sxboctuk.github.io/' }),
         );
     }
     //{ force: true }
