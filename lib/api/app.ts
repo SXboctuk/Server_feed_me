@@ -7,6 +7,7 @@ import mainRoute from './routes';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 import { seedData } from './data-access/seedData';
+import { runInThisContext } from 'vm';
 
 export class App {
     client: Express;
@@ -20,9 +21,13 @@ export class App {
     }
 
     connectCors() {
+        // this.client.use(
+        //     cors({ credentials: true, origin: 'http://localhost:8080' }),
+        // );
         this.client.use(
-            cors({ credentials: true, origin: 'https://sxboctuk.github.io/' }),
+            cors({ credentials: true, origin: 'https://sxboctuk.github.io' }),
         );
+        this.client.use(cors());
     }
     //{ force: true }
     connectDb() {
