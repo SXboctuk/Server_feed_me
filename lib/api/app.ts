@@ -24,10 +24,10 @@ export class App {
         // this.client.use(
         //     cors({ credentials: true, origin: 'http://localhost:8080' }),
         // );
-        this.client.use(cors());
-        // this.client.use(
-        //     cors({ credentials: true, origin: 'https://sxboctuk.github.io' }),
-        // );
+        // this.client.use(cors());
+        this.client.use(
+            cors({ credentials: true, origin: 'https://sxboctuk.github.io' }),
+        );
     }
     //{ force: true }
     connectDb() {
