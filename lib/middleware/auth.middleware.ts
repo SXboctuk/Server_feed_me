@@ -22,7 +22,7 @@ const verifyAuthToken = async (
         };
         next();
     } catch (err) {
-        return res.status(403).json(err).end();
+        return res.status(403).json({ message: 'auth middleware' }).end();
     }
 };
 

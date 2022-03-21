@@ -1,11 +1,13 @@
 'use strict';
-
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 import { dbConfig } from '../../../constants/config';
+import { seedData } from '../seedData';
+
 const db: any = {};
 
 let sequelize: any;
@@ -46,14 +48,6 @@ if (env === 'development') {
             },
         },
     );
-    // sequelize = new Sequelize(process.env.DATABASE_URL, {
-    //     dialectOptions: {
-    //         ssl: {
-    //             require: true,
-    //             rejectUnauthorized: false,
-    //         },
-    //     },
-    // });
 }
 
 fs.readdirSync(__dirname)
