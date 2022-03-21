@@ -7,13 +7,15 @@ export class Server {
         this.app = new App();
     }
 
-    start() {
+    async start() {
+        await this.app.connectDb();
         this.app.connectStatic();
         this.app.connectCors();
-        this.app.connectDb();
+
         this.app.connectMiddlewares();
         this.app.connectRoutes();
         this.app.connectErrorHandlers();
         this.app.listen();
+        return this.app;
     }
 }

@@ -29,6 +29,7 @@ if (env === 'development') {
         {
             host: dbConfig.test.host,
             dialect: dbConfig.test.dialect,
+            // logging: false,
         },
     );
 } else if (env === 'production') {
