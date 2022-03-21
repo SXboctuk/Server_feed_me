@@ -1,5 +1,3 @@
-import express, { Express } from 'express';
-import { urlToHttpOptions } from 'url';
 import { App } from './api/app';
 
 export class Server {

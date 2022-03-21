@@ -6,7 +6,6 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 import { dbConfig } from '../../../constants/config';
-import { seedData } from '../seedData';
 
 const db: any = {};
 

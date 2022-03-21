@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
-import { MESSAGES } from "../../../constants/messages";
-import { authServices } from "../../services";
+import { NextFunction, Request, Response } from 'express';
+import { MESSAGES } from '../../../constants/messages';
+import { authServices } from '../../services';
 
 const signIn = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -10,12 +10,12 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
             password,
         });
 
-        res.cookie("jwt", token, { httpOnly: false });
+        res.cookie('jwt', token, { httpOnly: true });
 
         return res.json({
             userName: account.name,
             id: account.id,
-            role: "user",
+            role: 'user',
             userText: account.userText,
             email: account.email,
             image: account.imagePath,
