@@ -2,12 +2,7 @@ import request from 'supertest';
 import db from './api/data-access/models';
 import { seedData } from './api/data-access/seedData';
 
-import { Server } from './server';
-
 import { App } from './api/app';
-import { copySync } from 'fs-extra';
-
-const server = new Server();
 
 describe('Test example', () => {
     const app = new App();
