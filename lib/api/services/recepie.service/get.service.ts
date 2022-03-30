@@ -1,22 +1,22 @@
-import { Request } from "express";
-import { tokenUtils } from "../../../helpers";
-import db from "../../data-access/models";
+import { Request } from 'express';
+import { tokenUtils } from '../../../helpers';
+import db from '../../data-access/models';
 
 const get = async (id: string, req: Request) => {
     const recepie = await db.Recepie.findByPk(
         id,
         {
             include: [
-                "User",
+                'User',
                 {
                     model: db.RecepieComment,
                     include: { model: db.User },
                 },
             ],
-        }
+        },
         // { include: "RecepieComments" }
     );
-    const token = req.cookies["jwt"];
+    const token = req.cookies['jwt'];
     let userPayload: any = null;
     let isSavedRecepie = false;
     const likesCounter = await recepie.countRecepieUserLike();

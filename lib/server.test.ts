@@ -19,7 +19,7 @@ describe('Test example', () => {
                         (err: any) => console.log(err),
                     );
                     const user = await db.User.findByPk(elem.UserId);
-                    await recepie.addRecepieUserSave(user);
+                    await recepie.addRecepieSave(user);
                 }),
             );
             await Promise.all(
@@ -29,10 +29,10 @@ describe('Test example', () => {
                         (err: any) => console.log(err),
                     );
                     const user = await db.User.findByPk(elem.UserId);
-                    await cookbook.addCookbookUserSave(user);
+                    await cookbook.addCookbookSave(user);
                     await Promise.all(
                         Recepies.map(async (recepieId) => {
-                            await cookbook.addCookbookRecepie(
+                            await cookbook.addRecepieInCookbook(
                                 await db.Recepie.findByPk(recepieId),
                             );
                         }),

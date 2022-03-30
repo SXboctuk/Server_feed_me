@@ -7,6 +7,7 @@ import mainRoute from './routes';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 import { seedData } from './data-access/seedData';
+import { User } from './data-access/models/user';
 
 const env = process.env.NODE_ENV || 'development';
 export class App {
@@ -39,29 +40,29 @@ export class App {
         db.sequelize.sync({ force: true }).then(async () => {
             console.log('database connected');
             // seed data
-            // seedData.users.forEach(async (elem) => {
-            //     await db.User.create(elem);
-            // });
-            // seedData.recepies.forEach(async (elem) => {
-            //     const recepie = await db.Recepie.create(elem).catch(
-            //         (err: any) => console.log(err),
-            //     );
-            //     const user = await db.User.findByPk(elem.UserId);
-            //     await recepie.addRecepieUserSave(user);
-            // });
-            // seedData.cookbooks.forEach(async (elem) => {
-            //     const { Recepies, ...rest } = elem;
-            //     const cookbook = await db.Cookbook.create(rest).catch(
-            //         (err: any) => console.log(err),
-            //     );
-            //     const user = await db.User.findByPk(elem.UserId);
-            //     await cookbook.addCookbookUserSave(user);
-            //     Recepies.forEach(async (recepieId) => {
-            //         await cookbook.addCookbookRecepie(
-            //             await db.Recepie.findByPk(recepieId),
-            //         );
-            //     });
-            // });
+            seedData.users.forEach(async (elem) => {
+                await User.create(elem);
+            });
+            seedData.recepies.forEach(async (elem) => {
+                const recepie = await db.Recepie.create(elem).catch(
+                    (err: any) => console.log(err),
+                );
+                const user = await User.findByPk(elem.UserId);
+                await recepie.addRecepieUserSave(user);
+            });
+            seedData.cookbooks.forEach(async (elem) => {
+                const { Recepies, ...rest } = elem;
+                const cookbook = await db.Cookbook.create(rest).catch(
+                    (err: any) => console.log(err),
+                );
+                const user = await User.findByPk(elem.UserId);
+                await cookbook.addCookbookUserSave(user);
+                Recepies.forEach(async (recepieId) => {
+                    await cookbook.addCookbookRecepie(
+                        await db.Recepie.findByPk(recepieId),
+                    );
+                });
+            });
         });
     }
 
