@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 import { seedData } from './data-access/seedData';
 import { User } from './data-access/models/user';
+import { authParse } from '../middleware/authParse.middleware';
 
 const env = process.env.NODE_ENV || 'development';
 export class App {
@@ -71,6 +72,7 @@ export class App {
         this.client.use(express.urlencoded({ extended: true }));
         this.client.use(cookieParser());
         this.client.use(fileUpload());
+        this.client.use(authParse);
     }
 
     connectErrorHandlers() {

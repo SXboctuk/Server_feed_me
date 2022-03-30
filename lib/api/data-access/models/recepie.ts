@@ -182,7 +182,7 @@ export class Recepie
         User,
         number
     >;
-    declare countRecepieUserLikes: BelongsToManyCountAssociationsMixin;
+    declare countRecepieUserLike: BelongsToManyCountAssociationsMixin;
 
     //Recepie.belongsToMany(models.User, {as: 'RecepieUserSave',foreignKey: 'RecepieId',through: 'RecepieSave',});
     declare getRecepieUserSaves: BelongsToManyGetAssociationsMixin<User>;

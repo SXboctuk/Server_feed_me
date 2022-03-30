@@ -7,19 +7,25 @@ const verifyAuthToken = async (
     next: NextFunction,
 ) => {
     try {
-        const token = req.cookies['jwt'];
-
-        if (!token) {
+        if (req.body.userPayload) {
+            next();
+            return;
+        } else {
             return res.status(403).json({ message: 'auth error' }).end();
         }
+        // const token = req.query.token || req.cookies['jwt'];
 
-        const userPayload = tokenUtils.verifyToken(token);
+        // if (!token) {
+        //     return res.status(403).json({ message: 'auth error' }).end();
+        // }
 
-        req.body = {
-            ...req.body,
-            userPayload,
-            token,
-        };
+        // const userPayload = tokenUtils.verifyToken(token);
+
+        // req.body = {
+        //     ...req.body,
+        //     userPayload,
+        //     token,
+        // };
         next();
     } catch (err) {
         return res.status(403).json({ message: 'auth middleware' }).end();

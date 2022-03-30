@@ -1,15 +1,16 @@
-import { Request } from "express";
-import { tokenUtils } from "../../../helpers";
-import db from "../../data-access/models";
+import { Request } from 'express';
+import { tokenUtils } from '../../../helpers';
+import db from '../../data-access/models';
 
 const getAll = async (req: Request) => {
-    const cookbooks = await db.Cookbook.findAll({ include: "User" });
+    const cookbooks = await db.Cookbook.findAll({ include: 'User' });
 
-    const token = req.cookies["jwt"];
+    // const token = req.cookies["jwt"];
 
     let userPayload: any = null;
-    if (token) {
-        userPayload = tokenUtils.verifyToken(token);
+    if (req.body.userPayload) {
+        //userPayload = tokenUtils.verifyToken(token);
+        userPayload = req.body.userPayload;
         const user = await db.User.findByPk(userPayload.id);
         const userAuthData = await cookbooks.map(async (cookbook: any) => {
             const isSaved = await cookbook.hasCookbookUserSave(user);
@@ -40,7 +41,7 @@ const getAll = async (req: Request) => {
                 likesCounter: likesCounter,
                 commentCounter: commentCounter,
             };
-        })
+        }),
     ).then((values: any) => values);
 };
 

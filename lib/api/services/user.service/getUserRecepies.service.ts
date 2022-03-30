@@ -1,17 +1,18 @@
-import { Request } from "express";
-import { tokenUtils } from "../../../helpers";
-import db from "../../data-access/models";
+import { Request } from 'express';
+import { tokenUtils } from '../../../helpers';
+import db from '../../data-access/models';
 
 const getUserRecepies = async (id: string, req: Request) => {
     const recepies = await db.User.findOne({
         where: { id: id },
     }).then((user: any) => user.getUserRecepieSave());
 
-    const token = req.cookies["jwt"];
+    const token = req.cookies['jwt'];
 
     let userPayload: any = null;
-    if (token) {
-        userPayload = tokenUtils.verifyToken(token);
+    if (req.body.userPayload) {
+        //userPayload = tokenUtils.verifyToken(token);
+        userPayload = req.body.userPayload;
         const user = await db.User.findByPk(userPayload.id);
         const userAuthData = await recepies.map(async (recepie: any) => {
             const isSavedRecepie = await recepie.hasRecepieUserSave(user);
@@ -45,7 +46,7 @@ const getUserRecepies = async (id: string, req: Request) => {
                 likesCounter: likesCounter,
                 commentCounter: commentCounter,
             };
-        })
+        }),
     ).then((values: any) => values);
 };
 export default getUserRecepies;
