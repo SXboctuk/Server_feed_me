@@ -2,8 +2,7 @@ export const cookbooks = [
     {
         id: '95307233-5d4e-4a75-b8dd-97ae82ca27c5',
         title: 'Cookbook title',
-        imagePath:
-            'http://localhost:3000/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp',
+        imagePath: `${process.env.SITE_URL}/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp`,
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         isVegatarian: false,
@@ -20,8 +19,7 @@ export const cookbooks = [
     {
         id: 'e527a732-2c41-41ab-ab02-117729f3697a',
         title: 'Cookbook title',
-        imagePath:
-            'http://localhost:3000/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp',
+        imagePath: `${process.env.SITE_URL}/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp`,
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         isVegatarian: false,
@@ -38,8 +36,7 @@ export const cookbooks = [
     {
         id: '6350a177-f84a-4ee0-a3de-efcf94e34ae4',
         title: 'Cookbook title',
-        imagePath:
-            'http://localhost:3000/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp',
+        imagePath: `${process.env.SITE_URL}/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp`,
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         isVegatarian: false,
@@ -55,8 +52,7 @@ export const cookbooks = [
     {
         id: '627a041b-9da2-4d44-ae6d-550cee7f315c',
         title: 'Cookbook title',
-        imagePath:
-            'http://localhost:3000/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp',
+        imagePath: `${process.env.SITE_URL}/uploads/image/2d40b5c5-db03-447d-b3d2-1270d0882581.webp`,
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         isVegatarian: false,
