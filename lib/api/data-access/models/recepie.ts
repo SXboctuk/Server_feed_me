@@ -149,7 +149,7 @@ export class Recepie
         RecepieComment,
         number
     >;
-    declare countRecepieComments: HasManyCountAssociationsMixin;
+    declare countRecepieComment: HasManyCountAssociationsMixin;
     declare createRecepieComment: HasManyCreateAssociationMixin<RecepieComment>;
 
     //Recepie.belongsTo(models.User);
@@ -209,7 +209,7 @@ export class Recepie
         User,
         number
     >;
-    declare countRecepieUserSaves: BelongsToManyCountAssociationsMixin;
+    declare countRecepieUserSave: BelongsToManyCountAssociationsMixin;
 
     //Recepie.belongsToMany(models.Cookbook, {as: 'RecepieCookbook',foreignKey: 'RecepieId',through: 'RecepieInCookbook',});
     declare getRecepieCookbooks: BelongsToManyGetAssociationsMixin<Cookbook>;
@@ -242,7 +242,7 @@ export class Recepie
         Cookbook,
         number
     >;
-    declare countRecepieCookbooks: BelongsToManyCountAssociationsMixin;
+    declare countRecepieCookbook: BelongsToManyCountAssociationsMixin;
 
     declare static assoctiations: {
         user: Association<Recepie, User>;

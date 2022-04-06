@@ -27,9 +27,7 @@ import {
     InferAttributes,
     InferCreationAttributes,
     Model,
-    NonAttribute,
     Sequelize,
-    UUIDV4,
 } from 'sequelize';
 import { Cookbook } from './cookbook';
 import { CookbookComment } from './cookbookComment';
@@ -114,7 +112,7 @@ export class User
     declare removeRecepies: HasManyRemoveAssociationsMixin<Recepie, number>;
     declare hasRecepie: HasManyHasAssociationMixin<Recepie, number>;
     declare hasRecepies: HasManyHasAssociationsMixin<Recepie, number>;
-    declare countRecepies: HasManyCountAssociationsMixin;
+    declare countRecepie: HasManyCountAssociationsMixin;
     declare createRecepie: HasManyCreateAssociationMixin<Recepie>;
 
     // User.belongsToMany(models.Recepie, { as: 'UserRecepiLike', foreignKey: 'UserId', through: 'RecepieLike',});
@@ -148,7 +146,7 @@ export class User
         Recepie,
         number
     >;
-    declare countUserRecepiLikes: BelongsToManyCountAssociationsMixin;
+    declare countUserRecepiLike: BelongsToManyCountAssociationsMixin;
 
     //  User.belongsToMany(models.Recepie, {as: 'UserRecepieSave', foreignKey: 'UserId', through: 'RecepieSave',});
     declare getUserRecepieSaves: BelongsToManyGetAssociationsMixin<Recepie>;
@@ -181,7 +179,7 @@ export class User
         Recepie,
         number
     >;
-    declare countUserRecepieSaves: BelongsToManyCountAssociationsMixin;
+    declare countUserRecepieSave: BelongsToManyCountAssociationsMixin;
 
     // User.hasMany(models.RecepieComment);
     declare getRecepieComments: HasManyGetAssociationsMixin<Recepie>;
@@ -198,7 +196,7 @@ export class User
     >;
     declare hasRecepieComment: HasManyHasAssociationMixin<Recepie, number>;
     declare hasRecepieComments: HasManyHasAssociationsMixin<Recepie, number>;
-    declare countRecepieComments: HasManyCountAssociationsMixin;
+    declare countRecepieComment: HasManyCountAssociationsMixin;
     declare createRecepieComment: HasManyCreateAssociationMixin<Recepie>;
 
     // User.belongsToMany(models.Cookbook, {as: 'UserCookbookLike',foreignKey: 'UserId',through: 'CookbookLike',});
@@ -232,7 +230,7 @@ export class User
         Cookbook,
         number
     >;
-    declare countUserCookbookLikes: BelongsToManyCountAssociationsMixin;
+    declare countUserCookbookLike: BelongsToManyCountAssociationsMixin;
 
     // User.belongsToMany(models.Cookbook, {as: 'UserCookbookSave',foreignKey: 'UserId',through: 'CookbookSave',});
     declare getUserCookbookSaves: BelongsToManyGetAssociationsMixin<Cookbook>;
@@ -265,7 +263,7 @@ export class User
         Cookbook,
         number
     >;
-    declare countUserCookbookSaves: BelongsToManyCountAssociationsMixin;
+    declare countUserCookbookSave: BelongsToManyCountAssociationsMixin;
 
     // User.hasMany(models.CookbookComment);
     declare getCookbookComments: HasManyGetAssociationsMixin<Cookbook>;
@@ -282,7 +280,7 @@ export class User
     >;
     declare hasCookbookComment: HasManyHasAssociationMixin<Cookbook, number>;
     declare hasCookbookComments: HasManyHasAssociationsMixin<Cookbook, number>;
-    declare countCookbookComments: HasManyCountAssociationsMixin;
+    declare countCookbookComment: HasManyCountAssociationsMixin;
     declare createCookbookComment: HasManyCreateAssociationMixin<Cookbook>;
 
     declare static assoctiations: {

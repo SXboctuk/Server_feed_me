@@ -1,9 +1,16 @@
-import { ExternalError, InternalError } from "../../../helpers/errors";
-import db from "../../data-access/models";
+import { ExternalError, InternalError } from '../../../helpers/errors';
+import db from '../../data-access/models';
+import { Recepie } from '../../data-access/models/recepie';
 
 const like = async (userId: string, recepieId: string) => {
-    return await db.Recepie.findByPk(recepieId)
-        .then(async (recepie: any) => {
+    return await Recepie.findByPk(recepieId)
+        .then(async (recepie: Recepie | null) => {
+            if (recepie === null) {
+                throw new ExternalError({
+                    message: 'not Found recepie',
+                    status: 404,
+                });
+            }
             const user = await db.User.findByPk(userId);
             const save = await recepie
                 .hasRecepieUserLike(user)

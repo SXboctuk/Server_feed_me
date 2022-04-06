@@ -148,7 +148,7 @@ export class Cookbook
         CookbookComment,
         number
     >;
-    declare countCookbookComments: HasManyCountAssociationsMixin;
+    declare countCookbookComment: HasManyCountAssociationsMixin;
     declare createCookbookComment: HasManyCreateAssociationMixin<CookbookComment>;
 
     //Cookbook.belongsToMany(models.User, {as: 'CookbookUserLike',foreignKey: 'Cookbookid',through: 'CookbookLike',});
@@ -176,7 +176,7 @@ export class Cookbook
         User,
         number
     >;
-    declare countCookbookUserLikes: BelongsToManyCountAssociationsMixin;
+    declare countCookbookUserLike: BelongsToManyCountAssociationsMixin;
     //Cookbook.belongsToMany(models.User, {as: 'CookbookUserSave',foreignKey: 'Cookbookid',through: 'CookbookSave',});
     declare getCookbookUserSaves: BelongsToManyGetAssociationsMixin<User>;
     declare setCookbookUserSaves: BelongsToManySetAssociationsMixin<
@@ -202,7 +202,7 @@ export class Cookbook
         User,
         number
     >;
-    declare countCookbookUserSaves: BelongsToManyCountAssociationsMixin;
+    declare countCookbookUserSave: BelongsToManyCountAssociationsMixin;
 
     //Cookbook.belongsToMany(models.Recepie, {as: 'CookbookRecepie',foreignKey: 'Cookbookid',through: 'RecepieInCookbook',});
     declare getCookbookRecepies: BelongsToManyGetAssociationsMixin<Recepie>;
@@ -235,7 +235,7 @@ export class Cookbook
         Recepie,
         number
     >;
-    declare countCookbookRecepies: BelongsToManyCountAssociationsMixin;
+    declare countCookbookRecepie: BelongsToManyCountAssociationsMixin;
 
     declare static assoctiations: {
         user: Association<Cookbook, User>;

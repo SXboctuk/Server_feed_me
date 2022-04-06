@@ -17,12 +17,12 @@ export const saveFiles = async (
     await ensureDir(uploadFolder);
 
     await writeFile(`${uploadFolder}/${file.originalname}`, file.buffer);
-    let siteURL;
-    if (process.env.NODE_ENV === 'development') {
-        siteURL = 'http://localhost:3000';
-    } else {
-        siteURL = 'https://secure-brushlands-80295.herokuapp.com';
-    }
+    const siteURL = process.env.SITE_URL;
+    // if (process.env.NODE_ENV === 'development') {
+    //     siteURL = 'http://localhost:3000';
+    // } else {
+    //     siteURL = 'https://secure-brushlands-80295.herokuapp.com';
+    // }
     const res: FileElementResponse = {
         url: `${siteURL}/uploads/${dateFolder}/${file.originalname}`,
         name: file.originalname,
