@@ -19,6 +19,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
             userText: account.userText,
             email: account.email,
             image: account.imagePath,
+            token: token,
         });
     } catch (err) {
         next(err);

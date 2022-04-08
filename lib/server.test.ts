@@ -2,7 +2,12 @@ import request from 'supertest';
 import db from './api/data-access/models';
 import { seedData } from './api/data-access/seedData';
 
+import { Server } from './server';
+
 import { App } from './api/app';
+import { copySync } from 'fs-extra';
+
+const server = new Server();
 
 describe('Test example', () => {
     const app = new App();
@@ -19,7 +24,7 @@ describe('Test example', () => {
                         (err: any) => console.log(err),
                     );
                     const user = await db.User.findByPk(elem.UserId);
-                    await recepie.addRecepieUserSave(user);
+                    await recepie.addRecepieSave(user);
                 }),
             );
             await Promise.all(
@@ -29,10 +34,10 @@ describe('Test example', () => {
                         (err: any) => console.log(err),
                     );
                     const user = await db.User.findByPk(elem.UserId);
-                    await cookbook.addCookbookUserSave(user);
+                    await cookbook.addCookbookSave(user);
                     await Promise.all(
                         Recepies.map(async (recepieId) => {
-                            await cookbook.addCookbookRecepie(
+                            await cookbook.addRecepieInCookbook(
                                 await db.Recepie.findByPk(recepieId),
                             );
                         }),

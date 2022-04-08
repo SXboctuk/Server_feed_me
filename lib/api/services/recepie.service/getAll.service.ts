@@ -1,16 +1,17 @@
-import { Request } from "express";
-import { tokenUtils } from "../../../helpers";
-import { recepie } from "../../../helpers/validators/recepie.validator";
-import db from "../../data-access/models";
+import { Request } from 'express';
+import { tokenUtils } from '../../../helpers';
+import { recepie } from '../../../helpers/validators/recepie.validator';
+import db from '../../data-access/models';
 
 const getAll = async (req: Request) => {
-    const recepies = await db.Recepie.findAll({ include: "User" });
+    const recepies = await db.Recepie.findAll({ include: 'User' });
 
-    const token = req.cookies["jwt"];
+    // const token = req.cookies["jwt"];
 
     let userPayload: any = null;
-    if (token) {
-        userPayload = tokenUtils.verifyToken(token);
+    if (req.body.userPayload) {
+        //userPayload = tokenUtils.verifyToken(token);
+        userPayload = req.body.userPayload;
         const user = await db.User.findByPk(userPayload.id);
         const userAuthData = await recepies.map(async (recepie: any) => {
             const isSavedRecepie = await recepie.hasRecepieUserSave(user);
@@ -41,7 +42,7 @@ const getAll = async (req: Request) => {
                 likesCounter: likesCounter,
                 commentCounter: commentCounter,
             };
-        })
+        }),
     ).then((values: any) => values);
 };
 

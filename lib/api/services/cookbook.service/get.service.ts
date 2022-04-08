@@ -1,11 +1,11 @@
-import { Request } from "express";
-import { tokenUtils } from "../../../helpers";
-import db from "../../data-access/models";
+import { Request } from 'express';
+import { tokenUtils } from '../../../helpers';
+import db from '../../data-access/models';
 
 const get = async (id: string, req: Request) => {
     const cookbook = await db.Cookbook.findByPk(id, {
         include: [
-            "User",
+            'User',
 
             {
                 model: db.CookbookComment,
@@ -14,7 +14,7 @@ const get = async (id: string, req: Request) => {
         ],
     });
 
-    const token = req.cookies["jwt"];
+    // const token = req.cookies["jwt"];
     let userPayload: any = null;
     let isSaved = false;
     const likesCounter = await cookbook.countCookbookUserLike();
@@ -24,8 +24,9 @@ const get = async (id: string, req: Request) => {
     const recepies = await cookbook.getCookbookRecepie();
 
     let recepiesInCookbookData: any = [];
-    if (token) {
-        userPayload = tokenUtils.verifyToken(token);
+    if (req.body.userPayload) {
+        //userPayload = tokenUtils.verifyToken(token);
+        userPayload = req.body.userPayload;
         const user = await db.User.findByPk(userPayload.id);
         isSaved = await cookbook.hasCookbookUserSave(user);
         isLike = await cookbook.hasCookbookUserLike(user);
@@ -48,7 +49,7 @@ const get = async (id: string, req: Request) => {
         });
 
         recepiesInCookbookData = Promise.all(userAuthData).then(
-            (values: any) => values
+            (values: any) => values,
         );
     }
 
@@ -65,7 +66,7 @@ const get = async (id: string, req: Request) => {
                 commentCounter: commentCounterRecepie,
                 User: ownUser,
             };
-        })
+        }),
     ).then((values: any) => values);
 
     return {

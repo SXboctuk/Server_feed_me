@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authRoute from './auth.routes';
 import cookbookRoute from './cookbook.routes';
+import privateRoute from './private.routes';
 import recepieRoute from './recepie.routes';
 import userRoute from './user.routes';
 
@@ -10,7 +11,10 @@ mainRoute.use('/auth', authRoute);
 mainRoute.use('/user', userRoute);
 mainRoute.use('/recepie', recepieRoute);
 mainRoute.use('/cookbook', cookbookRoute);
+mainRoute.use('/private', privateRoute);
+
 mainRoute.use('/', (req, res) => {
     res.end(`<h1> Hello its me</h1> `);
 });
+
 export default mainRoute;

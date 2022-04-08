@@ -1,10 +1,10 @@
-import db from "../../data-access/models";
-import { v4 as uuidv4 } from "uuid";
-import { recepieService } from ".";
-import { MFile } from "../../../helpers/utils/file.util/file.class";
-import { fileUtil } from "../../../helpers/utils/file.util";
-import { InternalError } from "../../../helpers/errors";
-import { FileElementResponse } from "../../../helpers/utils/file.util/saveFiles.utils";
+import db from '../../data-access/models';
+import { v4 as uuidv4 } from 'uuid';
+import { recepieService } from '.';
+import { MFile } from '../../../helpers/utils/file.util/file.class';
+import { fileUtil } from '../../../helpers/utils/file.util';
+import { InternalError } from '../../../helpers/errors';
+import { FileElementResponse } from '../../../helpers/utils/file.util/saveFiles.utils';
 
 const update = async (
     recepieId: string,
@@ -14,14 +14,14 @@ const update = async (
     directions: string,
     description: string,
     cookingTime: number,
-    userId: string
+    userId: string,
 ) => {
     let savedFile: FileElementResponse;
     if (image) {
         let saveFile: MFile;
         const buffer = await fileUtil.convertToWebP(image.data);
         saveFile = new MFile(`${uuidv4()}.webp`, buffer);
-        savedFile = await fileUtil.saveFiles(saveFile, "recepieImage");
+        savedFile = await fileUtil.saveFiles(saveFile, 'image');
     }
 
     const recepie = await db.Recepie.findByPk(recepieId)

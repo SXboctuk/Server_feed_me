@@ -18,7 +18,7 @@ const create = async (
     let saveFile: MFile;
     const buffer = await fileUtil.convertToWebP(image.data);
     saveFile = new MFile(`${uuidv4()}.webp`, buffer);
-    const savedFile = await fileUtil.saveFiles(saveFile, 'cookbookImage');
+    const savedFile = await fileUtil.saveFiles(saveFile, 'image');
 
     const uuidv4Id = uuidv4();
     return await db.Cookbook.create({
